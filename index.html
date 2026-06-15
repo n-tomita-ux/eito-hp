@@ -17,7 +17,7 @@
     --font-jp: "游ゴシック", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     --font-en: "Inter", "Helvetica Neue", Arial, sans-serif;
     --radius: 12px;
-    --shadow: 0 2px 16px rgba(0,0,0,0.07);
+    --shadow: 0 2px 16px rgba(0,0,0,0.08);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,14 +29,14 @@
     line-height: 1.7;
   }
 
-  /* ===== HEADER / NAV ===== */
+  /* ===== HEADER ===== */
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
     background: rgba(255,255,255,0.92);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid #F0E8E0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     padding: 0 5%;
     height: 64px;
     display: flex;
@@ -62,7 +62,6 @@
     font-weight: 800;
     font-size: 16px;
     font-family: var(--font-en);
-    letter-spacing: -0.5px;
   }
 
   .logo-text {
@@ -100,73 +99,87 @@
     border-radius: 20px;
     font-size: 13px !important;
     font-weight: 600 !important;
+    transition: background 0.2s !important;
   }
 
-  .nav-cta:hover { background: var(--orange-dark) !important; }
+  .nav-cta:hover { background: var(--orange-dark) !important; color: white !important; }
 
   /* ===== HERO ===== */
   .hero {
     min-height: 100vh;
-    background: linear-gradient(145deg, #FFF7ED 0%, #FFFFFF 50%, #FFF3E6 100%);
-    display: flex;
-    align-items: center;
-    padding: 100px 5% 60px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
   }
 
-  .hero::before {
-    content: '';
+  /* 背景写真 */
+  .hero-bg {
     position: absolute;
-    top: -100px; right: -100px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
-    border-radius: 50%;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80');
+    background-size: cover;
+    background-position: center right;
+    filter: brightness(0.75);
   }
 
-  .hero::after {
-    content: '';
+  /* 左側グラデーションオーバーレイ */
+  .hero-overlay {
     position: absolute;
-    bottom: -80px; left: -80px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 70%);
-    border-radius: 50%;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(20,20,20,0.85) 0%,
+      rgba(20,20,20,0.6) 45%,
+      rgba(20,20,20,0.1) 100%
+    );
+  }
+
+  /* 右下のオレンジ斜め帯 */
+  .hero-accent {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 280px; height: 100%;
+    background: var(--orange);
+    clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%);
+    opacity: 0.9;
   }
 
   .hero-inner {
+    position: relative;
+    z-index: 2;
     max-width: 1100px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    padding: 60px 5%;
     width: 100%;
-    position: relative;
-    z-index: 1;
   }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--orange-mid);
-    color: var(--orange-dark);
-    font-size: 12px;
-    font-weight: 600;
+    background: rgba(249,115,22,0.85);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
     padding: 5px 14px;
     border-radius: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     font-family: var(--font-en);
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: fadeInUp 0.6s ease both;
   }
 
   .hero h1 {
-    font-size: clamp(32px, 4vw, 52px);
+    font-size: clamp(32px, 4.5vw, 58px);
     font-weight: 700;
-    line-height: 1.25;
-    color: var(--color-main);
+    line-height: 1.2;
+    color: white;
     margin-bottom: 24px;
     letter-spacing: -0.5px;
+    animation: fadeInUp 0.6s 0.1s ease both;
   }
 
   .hero h1 em {
@@ -176,21 +189,24 @@
 
   .hero-desc {
     font-size: 16px;
-    color: var(--color-sub);
-    line-height: 1.8;
-    margin-bottom: 40px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.9;
+    margin-bottom: 44px;
+    max-width: 520px;
+    animation: fadeInUp 0.6s 0.2s ease both;
   }
 
   .hero-buttons {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
+    animation: fadeInUp 0.6s 0.3s ease both;
   }
 
   .btn-primary {
     background: var(--orange);
     color: white;
-    padding: 14px 32px;
+    padding: 14px 36px;
     border-radius: 28px;
     font-size: 15px;
     font-weight: 600;
@@ -203,103 +219,79 @@
 
   .btn-primary:hover {
     background: var(--orange-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(249,115,22,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(249,115,22,0.4);
   }
 
-  .btn-secondary {
+  .btn-outline {
     background: transparent;
-    color: var(--color-main);
-    padding: 14px 32px;
+    color: white;
+    padding: 14px 36px;
     border-radius: 28px;
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    border: 1.5px solid #DDD;
+    border: 1.5px solid rgba(255,255,255,0.5);
     transition: all 0.2s;
   }
 
-  .btn-secondary:hover {
-    border-color: var(--orange);
+  .btn-outline:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* ヒーロー下部ステータスバー */
+  .hero-stats {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 3;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .hero-stat {
+    padding: 20px 48px;
+    text-align: center;
+    border-right: 1px solid #EEE;
+  }
+
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat-value {
+    font-family: var(--font-en);
+    font-size: 28px;
+    font-weight: 700;
     color: var(--orange);
+    line-height: 1;
+    margin-bottom: 4px;
   }
 
-  /* Hero visual */
-  .hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .hero-card-stack {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .hero-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    padding: 20px 24px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    animation: floatIn 0.6s ease both;
-  }
-
-  .hero-card:nth-child(1) { animation-delay: 0.1s; }
-  .hero-card:nth-child(2) { animation-delay: 0.25s; }
-  .hero-card:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes floatIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-card-icon {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-
-  .icon-orange { background: var(--orange-mid); }
-  .icon-green  { background: #E8F5E9; }
-  .icon-blue   { background: #E3F2FD; }
-
-  .hero-card-text strong {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-main);
-    margin-bottom: 2px;
-  }
-
-  .hero-card-text span {
+  .hero-stat-label {
     font-size: 12px;
     color: var(--color-sub);
   }
 
-  /* ===== SECTION BASE ===== */
-  section { padding: 80px 5%; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
+  /* ===== SECTION BASE ===== */
   .section-label {
     font-family: var(--font-en);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
     color: var(--orange);
     margin-bottom: 12px;
     text-transform: uppercase;
   }
 
   .section-title {
-    font-size: clamp(24px, 3vw, 36px);
+    font-size: clamp(24px, 3vw, 38px);
     font-weight: 700;
     color: var(--color-main);
     line-height: 1.3;
@@ -309,67 +301,28 @@
   .section-desc {
     font-size: 15px;
     color: var(--color-sub);
-    line-height: 1.8;
-    max-width: 540px;
+    line-height: 1.9;
+    max-width: 520px;
   }
 
-  .section-header {
-    margin-bottom: 52px;
-  }
-
-  /* ===== NUMBERS ===== */
-  .numbers {
-    background: var(--orange-light);
-    padding: 60px 5%;
-  }
-
-  .numbers-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  .number-item {
-    background: white;
-    padding: 36px 24px;
-    text-align: center;
-  }
-
-  .number-item:first-child { border-radius: 12px 0 0 12px; }
-  .number-item:last-child  { border-radius: 0 12px 12px 0; }
-
-  .number-value {
-    font-family: var(--font-en);
-    font-size: 52px;
-    font-weight: 700;
-    color: var(--orange);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .number-value sup {
-    font-size: 24px;
-    vertical-align: super;
-  }
-
-  .number-label {
-    font-size: 13px;
-    color: var(--color-sub);
-    line-height: 1.5;
-  }
-
-  /* ===== DX FEATURES ===== */
+  /* ===== DX SECTION ===== */
   .dx-section {
-    background: var(--color-white);
+    padding: 96px 5%;
+    background: white;
+  }
+
+  .dx-inner {
     max-width: 1100px;
     margin: 0 auto;
+  }
+
+  .dx-header {
+    margin-bottom: 56px;
   }
 
   .dx-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 
@@ -378,17 +331,29 @@
     border-radius: var(--radius);
     padding: 28px 24px;
     transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
   }
 
   .dx-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow);
+    border-color: var(--orange-mid);
   }
 
-  .dx-card-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
+  .dx-tag {
+    display: inline-block;
+    background: var(--orange-mid);
+    color: var(--orange-dark);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    font-family: var(--font-en);
+    letter-spacing: 1px;
   }
+
+  .dx-card-icon { font-size: 30px; margin-bottom: 14px; }
 
   .dx-card h3 {
     font-size: 15px;
@@ -400,91 +365,129 @@
   .dx-card p {
     font-size: 13px;
     color: var(--color-sub);
-    line-height: 1.7;
-  }
-
-  .dx-tag {
-    display: inline-block;
-    background: var(--orange-mid);
-    color: var(--orange-dark);
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    font-family: var(--font-en);
+    line-height: 1.75;
   }
 
   /* ===== RECRUIT ===== */
-  .recruit {
-    background: linear-gradient(135deg, var(--orange) 0%, #FB923C 100%);
-    color: white;
-    text-align: center;
-    padding: 80px 5%;
+  .recruit-section {
+    padding: 96px 5%;
+    background: var(--color-main);
+    position: relative;
+    overflow: hidden;
   }
 
-  .recruit .section-label { color: rgba(255,255,255,0.7); }
-
-  .recruit .section-title { color: white; margin: 0 auto 16px; }
-
-  .recruit .section-desc {
-    color: rgba(255,255,255,0.85);
-    margin: 0 auto 40px;
-    max-width: 480px;
+  .recruit-section::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    background: var(--orange);
+    border-radius: 50%;
+    opacity: 0.08;
   }
+
+  .recruit-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .recruit-section .section-label { color: var(--orange); }
+  .recruit-section .section-title { color: white; }
+  .recruit-section .section-desc  { color: rgba(255,255,255,0.65); max-width: none; }
 
   .recruit-points {
     display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
   }
 
   .recruit-point {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     font-size: 14px;
     color: white;
     font-weight: 500;
   }
 
-  .recruit-point::before {
-    content: '✓';
-    background: rgba(255,255,255,0.25);
-    width: 22px; height: 22px;
-    border-radius: 50%;
+  .recruit-point-icon {
+    width: 32px; height: 32px;
+    background: var(--orange);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 15px;
     flex-shrink: 0;
   }
 
-  .btn-white {
-    background: white;
-    color: var(--orange);
-    padding: 14px 40px;
-    border-radius: 28px;
+  .recruit-cta {
+    background: var(--color-bg);
+    border-radius: 16px;
+    padding: 40px;
+  }
+
+  .recruit-cta h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-main);
+    margin-bottom: 8px;
+  }
+
+  .recruit-cta p {
+    font-size: 13px;
+    color: var(--color-sub);
+    margin-bottom: 28px;
+    line-height: 1.8;
+  }
+
+  .btn-orange {
+    display: block;
+    background: var(--orange);
+    color: white;
+    text-align: center;
+    padding: 14px;
+    border-radius: 10px;
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
-    display: inline-block;
+    transition: all 0.2s;
+    margin-bottom: 12px;
+  }
+
+  .btn-orange:hover {
+    background: var(--orange-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: block;
+    background: transparent;
+    color: var(--color-sub);
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid #DDD;
     transition: all 0.2s;
   }
 
-  .btn-white:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
 
   /* ===== FOOTER ===== */
   footer {
-    background: #1C1C1E;
-    color: #999;
-    padding: 48px 5% 32px;
+    background: #111;
+    color: #666;
+    padding: 56px 5% 32px;
   }
 
   .footer-inner {
@@ -494,43 +497,32 @@
     grid-template-columns: 2fr 1fr 1fr;
     gap: 48px;
     padding-bottom: 40px;
-    border-bottom: 1px solid #333;
-    margin-bottom: 32px;
+    border-bottom: 1px solid #222;
+    margin-bottom: 28px;
   }
 
-  .footer-brand .logo-mark {
-    background: var(--orange);
-    margin-bottom: 16px;
-  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
 
-  .footer-brand p {
-    font-size: 13px;
-    line-height: 1.8;
-    color: #777;
-  }
+  .footer-brand p { font-size: 13px; line-height: 1.9; color: #555; }
 
   .footer-nav h4 {
-    font-size: 12px;
-    font-weight: 600;
-    color: #CCC;
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
     margin-bottom: 16px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     font-family: var(--font-en);
   }
 
-  .footer-nav ul {
-    list-style: none;
-  }
+  .footer-nav ul { list-style: none; }
 
-  .footer-nav ul li {
-    margin-bottom: 10px;
-  }
+  .footer-nav ul li { margin-bottom: 10px; }
 
   .footer-nav ul li a {
     text-decoration: none;
     font-size: 13px;
-    color: #777;
+    color: #555;
     transition: color 0.2s;
   }
 
@@ -541,40 +533,35 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     font-size: 12px;
-    color: #555;
+    color: #444;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
   }
 
-  /* ===== SCROLL ANIMATION ===== */
+  /* ===== FADE ANIMATION ===== */
   .fade-up {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.65s ease, transform 0.65s ease;
   }
 
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
-    header { padding: 0 4%; }
-    nav { gap: 16px; }
     nav a:not(.nav-cta) { display: none; }
-
-    .hero { padding: 90px 4% 50px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-    .hero-visual { display: none; }
-
-    .numbers-inner { grid-template-columns: 1fr; gap: 2px; }
-    .number-item:first-child { border-radius: 12px 12px 0 0; }
-    .number-item:last-child  { border-radius: 0 0 12px 12px; }
-
+    .hero-accent { width: 120px; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stat { padding: 16px 24px; }
+    .dx-grid { grid-template-columns: 1fr; }
+    .recruit-inner { grid-template-columns: 1fr; gap: 40px; }
     .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 28px; }
+    .hero-accent { display: none; }
   }
 </style>
 </head>
@@ -591,85 +578,64 @@
   </a>
   <nav>
     <a href="#dx">DX推進</a>
-    <a href="#works">施工実績</a>
+    <a href="#recruit">採用情報</a>
     <a href="#company">会社情報</a>
-    <a href="#recruit" class="nav-cta">採用情報</a>
+    <a href="#contact" class="nav-cta">お問い合わせ</a>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-accent"></div>
+
   <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">🔶 SMART CONSTRUCTION</div>
-      <h1>
-        空調設備の<em>未来</em>を、<br>
-        スマートに。
-      </h1>
-      <p class="hero-desc">
-        東京・墨田区を拠点に、空調設備・配管工事を手がける栄都工業。<br>
-        AIと独自ITツールで「建設業のDX」を自ら実践し、<br>
-        若手が活躍しやすいスマートな現場をつくっています。
-      </p>
-      <div class="hero-buttons">
-        <a href="#recruit" class="btn-primary">採用情報を見る →</a>
-        <a href="#dx" class="btn-secondary">DXの取り組み</a>
-      </div>
+    <div class="hero-badge">🔶 Smart Construction × DX</div>
+    <h1>
+      建設の常識を、<br>
+      <em>DX</em>で塗り替える。
+    </h1>
+    <p class="hero-desc">
+      東京・墨田区を拠点に、空調設備・配管工事を手がける栄都工業。<br>
+      AIと独自ITツールで「建設業のDX」を自ら実践し、<br>
+      若手・女性が活躍しやすいスマートな現場をつくっています。
+    </p>
+    <div class="hero-buttons">
+      <a href="#recruit" class="btn-primary">採用情報を見る →</a>
+      <a href="#dx" class="btn-outline">DXの取り組み</a>
     </div>
-    <div class="hero-visual">
-      <div class="hero-card-stack">
-        <div class="hero-card">
-          <div class="hero-card-icon icon-orange">🤖</div>
-          <div class="hero-card-text">
-            <strong>AIトミー 稼働中</strong>
-            <span>実務疑問をその場で即解決</span>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="hero-card-icon icon-green">📱</div>
-          <div class="hero-card-text">
-            <strong>現場稼働管理アプリ</strong>
-            <span>スマホ1台で直行直帰OK</span>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="hero-card-icon icon-blue">📊</div>
-          <div class="hero-card-text">
-            <strong>スキル評価マップ公開</strong>
-            <span>給与アップの条件が明確</span>
-          </div>
-        </div>
-      </div>
+  </div>
+
+  <!-- ステータスバー -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-value">25年</div>
+      <div class="hero-stat-label">の施工実績</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">5種</div>
+      <div class="hero-stat-label">の自社開発ITツール</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">直行直帰</div>
+      <div class="hero-stat-label">スマホで完結する現場管理</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">未経験OK</div>
+      <div class="hero-stat-label">充実の教育・評価制度</div>
     </div>
   </div>
 </section>
 
-<!-- NUMBERS -->
-<div class="numbers">
-  <div class="numbers-inner">
-    <div class="number-item fade-up">
-      <div class="number-value">25<sup>年</sup></div>
-      <div class="number-label">の施工実績</div>
-    </div>
-    <div class="number-item fade-up">
-      <div class="number-value">5<sup>種</sup></div>
-      <div class="number-label">の自社開発ITツール</div>
-    </div>
-    <div class="number-item fade-up">
-      <div class="number-value">0<sup>%</sup></div>
-      <div class="number-label">残業ゼロ目標（直行直帰推進）</div>
-    </div>
-  </div>
-</div>
-
 <!-- DX -->
-<section id="dx" style="padding: 80px 5%;">
-  <div class="dx-section">
-    <div class="section-header fade-up">
+<section class="dx-section" id="dx">
+  <div class="dx-inner">
+    <div class="dx-header fade-up">
       <div class="section-label">DX & Smart Work</div>
-      <h2 class="section-title">建設業の常識を、<br>ITで塗り替える。</h2>
+      <h2 class="section-title">アナログな建設業を、<br>スマートに変える。</h2>
       <p class="section-desc">
-        「アナログで過酷」なイメージとは無縁。栄都工業では自社開発のAI・Webアプリを現場で実際に活用し、スマートな働き方を実現しています。
+        自社開発のAI・Webアプリを現場で実際に活用。「過酷でアナログ」なイメージとは無縁の、スマートな働き方を実現しています。
       </p>
     </div>
     <div class="dx-grid">
@@ -677,25 +643,25 @@
         <div class="dx-tag">AI</div>
         <div class="dx-card-icon">🤖</div>
         <h3>AIトミー</h3>
-        <p>独自のAIアシスタント。実務上の疑問をその場で確認でき、若手の自己解決能力を強力にサポート。手戻りや指摘を大幅に削減します。</p>
+        <p>独自のAIアシスタント。実務上の疑問をその場で即解決し、若手の自己解決能力を強力にサポート。手戻りや指摘を大幅に削減します。</p>
       </div>
       <div class="dx-card fade-up">
         <div class="dx-tag">APP</div>
         <div class="dx-card-icon">📱</div>
         <h3>現場稼働管理アプリ</h3>
-        <p>スマホ1台で出退勤・業務報告を入力。直行直帰が容易になり、無駄な移動ゼロを実現。現場から直接スマートに完結します。</p>
+        <p>スマホ1台で出退勤・業務報告を入力。直行直帰が容易になり、無駄な移動ゼロを実現。現場からスマートに完結します。</p>
       </div>
       <div class="dx-card fade-up">
         <div class="dx-tag">AI</div>
         <div class="dx-card-icon">💡</div>
         <h3>見積り査定AI</h3>
-        <p>見積りの不備・抜け・利益確保を自動チェック。デスクワークの負担を大幅に削減し、ミスのない精度の高い見積りを実現します。</p>
+        <p>見積りの不備・抜け・利益確保を自動チェック。デスクワークの負担を大幅削減し、精度の高い見積りを実現します。</p>
       </div>
       <div class="dx-card fade-up">
         <div class="dx-tag">APP</div>
         <div class="dx-card-icon">📚</div>
         <h3>2級管工事 模試アプリ</h3>
-        <p>過去5年分の問題をスマホでゲーム感覚で学習。成績の変化も確認でき、資格取得を会社全体でバックアップします。（開発中）</p>
+        <p>過去5年分の問題をスマホでゲーム感覚で学習。成績の変化も確認でき、資格取得を会社全体でバックアップします。</p>
       </div>
       <div class="dx-card fade-up">
         <div class="dx-tag">APP</div>
@@ -707,37 +673,64 @@
         <div class="dx-tag">SYSTEM</div>
         <div class="dx-card-icon">📈</div>
         <h3>スキル評価マップ</h3>
-        <p>「何ができれば給与が上がるか」を明確にした技能マップ。評価の透明性を公開し、キャリアパスを見える化しています。</p>
+        <p>「何ができれば給与が上がるか」を明確化。評価の透明性を公開し、キャリアパスを完全に見える化しています。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RECRUIT CTA -->
-<section id="recruit" class="recruit">
-  <div class="section-label">Recruit</div>
-  <h2 class="section-title">一緒に、新しい現場をつくろう。</h2>
-  <p class="section-desc">
-    年齢・学歴・経験は不問。スマートな働き方と明確なキャリアパスで、あなたの成長を全力でサポートします。
-  </p>
-  <div class="recruit-points">
-    <div class="recruit-point">未経験・第二新卒歓迎</div>
-    <div class="recruit-point">直行直帰OK</div>
-    <div class="recruit-point">資格取得支援あり</div>
-    <div class="recruit-point">定期社長面談</div>
+<!-- RECRUIT -->
+<section class="recruit-section" id="recruit">
+  <div class="recruit-inner">
+    <div class="fade-up">
+      <div class="section-label">Recruit</div>
+      <h2 class="section-title">一緒に、新しい<br>現場をつくろう。</h2>
+      <p class="section-desc">
+        年齢・学歴・経験は不問。スマートな働き方と明確なキャリアパスで、あなたの成長を全力でサポートします。
+      </p>
+      <div class="recruit-points">
+        <div class="recruit-point">
+          <div class="recruit-point-icon">🌱</div>
+          未経験・第二新卒・女性歓迎
+        </div>
+        <div class="recruit-point">
+          <div class="recruit-point-icon">🚗</div>
+          直行直帰OK・スマホで完結
+        </div>
+        <div class="recruit-point">
+          <div class="recruit-point-icon">📜</div>
+          資格取得支援・勉強会あり
+        </div>
+        <div class="recruit-point">
+          <div class="recruit-point-icon">💬</div>
+          定期社長面談・透明な評価制度
+        </div>
+      </div>
+    </div>
+    <div class="recruit-cta fade-up">
+      <h3>まずは話を聞いてみませんか？</h3>
+      <p>選考に不安がある方も大歓迎です。<br>カジュアルな面談からでもOKです。</p>
+      <a href="#" class="btn-orange">採用情報を詳しく見る</a>
+      <a href="#contact" class="btn-ghost">お問い合わせ・見学申込み</a>
+    </div>
   </div>
-  <a href="#" class="btn-white">採用情報を詳しく見る</a>
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer id="company">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="logo-mark" style="width:40px;height:40px;font-size:18px;">8</div>
-      <p style="margin-top:16px;">
-        有限会社 栄都工業<br>
-        〒130-0014 東京都墨田区亀沢4-11-12 青柳ビル4F<br>
-        TEL: 03-6240-4032
+      <div class="footer-logo">
+        <div class="logo-mark">8</div>
+        <div class="logo-text" style="color:#aaa;">
+          有限会社 栄都工業
+          <span style="color:#555;">EITO KOGYO Co., Ltd.</span>
+        </div>
+      </div>
+      <p>
+        〒130-0014<br>
+        東京都墨田区亀沢4-11-12 青柳ビル4F<br>
+        TEL: 03-6240-4032　FAX: 03-6240-4033
       </p>
     </div>
     <div class="footer-nav">
@@ -754,33 +747,29 @@
       <ul>
         <li><a href="#">空調設備工事</a></li>
         <li><a href="#">配管工事</a></li>
-        <li><a href="#">DX推進</a></li>
-        <li><a href="#">採用情報</a></li>
+        <li><a href="#dx">DX推進</a></li>
+        <li><a href="#recruit">採用情報</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2025 有限会社 栄都工業 All Rights Reserved.</span>
-    <span><a href="#" style="color:#555;text-decoration:none;">プライバシーポリシー</a></span>
+    <a href="#" style="color:#444;text-decoration:none;">プライバシーポリシー</a>
   </div>
 </footer>
 
 <script>
-  // スクロールアニメーション
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 80);
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // スムーススクロール
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -791,6 +780,5 @@
     });
   });
 </script>
-
 </body>
 </html>
