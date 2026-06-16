@@ -235,6 +235,76 @@
     .step-item { grid-template-columns: 56px 1fr; }
     .step-item:not(:last-child)::after { left: 27px; }
   }
+
+  /* ===== AI TOMMY ===== */
+  .tommy-section { padding: 96px 5%; background: var(--color-main); position: relative; overflow: hidden; }
+  .tommy-section::before { content: ''; position: absolute; top: -100px; left: -100px; width: 500px; height: 500px; background: var(--orange); border-radius: 50%; opacity: 0.05; }
+  .tommy-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+  .tommy-section .section-label { color: var(--orange); }
+  .tommy-section .section-title { color: white; }
+  .tommy-section .section-desc { color: rgba(255,255,255,0.6); max-width: none; margin-bottom: 32px; }
+  .tommy-visual { background: #222; border-radius: 16px; padding: 32px; border: 1px solid #333; }
+  .tommy-chat { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .tommy-msg { display: flex; gap: 10px; align-items: flex-start; }
+  .tommy-msg-ai { flex-direction: row; }
+  .tommy-msg-user { flex-direction: row-reverse; }
+  .tommy-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; flex-shrink: 0; font-family: var(--font-en); }
+  .tommy-bubble { max-width: 80%; padding: 12px 16px; border-radius: 12px; font-size: 13px; line-height: 1.7; }
+  .tommy-msg-ai .tommy-bubble { background: #2a2a2a; color: rgba(255,255,255,0.85); border-radius: 4px 12px 12px 12px; }
+  .tommy-msg-user .tommy-bubble { background: var(--orange); color: white; border-radius: 12px 4px 12px 12px; }
+  .tommy-cta-wrap { text-align: center; }
+  .tommy-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--orange); color: white; padding: 14px 32px; border-radius: 28px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .tommy-cta:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,0.4); }
+  .tommy-cta-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 10px; }
+
+  /* ===== SCHEDULE ===== */
+  .schedule-section { padding: 96px 5%; background: var(--color-bg); }
+  .schedule-inner { max-width: 900px; margin: 0 auto; }
+  .schedule-header { margin-bottom: 52px; }
+  .schedule-timeline { display: flex; flex-direction: column; gap: 0; }
+  .schedule-item { display: grid; grid-template-columns: 100px 1fr; gap: 24px; padding-bottom: 32px; position: relative; }
+  .schedule-item:not(:last-child)::after { content: ''; position: absolute; left: 49px; top: 28px; bottom: 0; width: 2px; background: #EEE; }
+  .schedule-time { text-align: right; padding-top: 4px; }
+  .schedule-time-value { font-family: var(--font-en); font-size: 15px; font-weight: 700; color: var(--orange); line-height: 1; }
+  .schedule-time-label { font-size: 11px; color: var(--color-sub); margin-top: 2px; }
+  .schedule-dot { position: absolute; left: 43px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--orange); border: 3px solid white; box-shadow: 0 0 0 2px var(--orange-mid); z-index: 1; }
+  .schedule-content { padding-left: 24px; }
+  .schedule-content h4 { font-size: 15px; font-weight: 700; color: var(--color-main); margin-bottom: 4px; }
+  .schedule-content p { font-size: 13px; color: var(--color-sub); line-height: 1.7; }
+  .schedule-placeholder { background: white; border-radius: var(--radius); padding: 48px; text-align: center; box-shadow: var(--shadow); }
+  .schedule-placeholder p { color: var(--color-sub); font-size: 14px; }
+
+  /* ===== FAQ ===== */
+  .faq-section { padding: 96px 5%; background: white; }
+  .faq-inner { max-width: 860px; margin: 0 auto; }
+  .faq-header { margin-bottom: 52px; }
+  .faq-list { display: flex; flex-direction: column; gap: 2px; }
+  .faq-item { border-radius: var(--radius); overflow: hidden; }
+  .faq-q { width: 100%; background: var(--color-bg); border: none; padding: 20px 24px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: background 0.2s; }
+  .faq-q:hover { background: var(--orange-mid); }
+  .faq-q.open { background: var(--orange); }
+  .faq-q-text { font-size: 15px; font-weight: 600; color: var(--color-main); line-height: 1.5; }
+  .faq-q.open .faq-q-text { color: white; }
+  .faq-icon { width: 24px; height: 24px; border-radius: 50%; background: var(--orange-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; font-weight: 300; color: var(--orange); transition: all 0.2s; }
+  .faq-q.open .faq-icon { background: rgba(255,255,255,0.25); color: white; transform: rotate(45deg); }
+  .faq-a { display: none; background: white; padding: 20px 24px; border-left: 3px solid var(--orange); font-size: 14px; color: var(--color-sub); line-height: 1.85; }
+  .faq-a.open { display: block; }
+
+  /* ===== CONTACT FORM ===== */
+  .form-section { padding: 96px 5%; background: var(--color-bg); }
+  .form-inner { max-width: 760px; margin: 0 auto; }
+  .form-header { margin-bottom: 52px; }
+  .form-embed { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; min-height: 600px; display: flex; align-items: center; justify-content: center; }
+  .form-placeholder { text-align: center; padding: 60px 40px; }
+  .form-placeholder p { color: var(--color-sub); font-size: 14px; line-height: 1.8; }
+  .form-placeholder .form-url { display: inline-block; margin-top: 16px; background: var(--orange); color: white; padding: 12px 28px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .tommy-inner { grid-template-columns: 1fr; gap: 40px; }
+    .schedule-item { grid-template-columns: 80px 1fr; }
+    .schedule-item:not(:last-child)::after { left: 39px; }
+    .schedule-dot { left: 33px; }
+  }
 </style>
 </head>
 <body>
@@ -492,6 +562,128 @@
   </div>
 </section>
 
+
+<!-- AI TOMMY -->
+<section class="tommy-section" id="tommy">
+  <div class="tommy-inner">
+    <div class="fade-up">
+      <div class="section-label">AI Tommy</div>
+      <h2 class="section-title">AIトミーに<br>何でも聞いてみて。</h2>
+      <p class="section-desc">
+        栄都工業が独自開発したAIアシスタント「AIトミー」。仕事の疑問、現場のルール、資材の知識まで、その場で即解決。若手社員の強い味方です。
+      </p>
+      <p class="section-desc" style="margin-top:12px;">採用に関する質問も気軽に聞いてみてください。</p>
+    </div>
+    <div class="fade-up">
+      <div class="tommy-visual">
+        <div class="tommy-chat">
+          <div class="tommy-msg tommy-msg-user">
+            <div class="tommy-avatar" style="background:#555;">你</div>
+            <div class="tommy-bubble">空調の冷媒配管の勾配って決まりありますか？</div>
+          </div>
+          <div class="tommy-msg tommy-msg-ai">
+            <div class="tommy-avatar">AI</div>
+            <div class="tommy-bubble">冷媒配管の勾配は、メーカー施工基準によりますが一般的に1/250〜1/500程度を確保します。液管・ガス管ともに冷凍機油の戻りを考慮した方向に勾配をとることが重要です。</div>
+          </div>
+          <div class="tommy-msg tommy-msg-user">
+            <div class="tommy-avatar" style="background:#555;">你</div>
+            <div class="tommy-bubble">ありがとうございます！</div>
+          </div>
+        </div>
+        <div class="tommy-cta-wrap">
+          <a href="https://gemini.google.com/gem/1VMccK0Lr-veIEMtD-rLXNqEFSZRvHZhF?usp=sharing" target="_blank" class="tommy-cta">AIトミーと話してみる →</a>
+          <p class="tommy-cta-note">※Googleアカウントが必要です</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule-section" id="schedule">
+  <div class="schedule-inner">
+    <div class="schedule-header fade-up">
+      <div class="section-label">A Day in the Life</div>
+      <h2 class="section-title">1日のスケジュール</h2>
+      <p class="section-desc">実際にどんな1日を過ごしているか、リアルな流れをご紹介します。</p>
+    </div>
+    <div class="schedule-timeline fade-up" id="schedule-content">
+      <!-- 内容はeito-recruitから転記予定 -->
+      <div class="schedule-placeholder">
+        <p>スケジュールの内容を準備中です。<br>採用ページで先に確認できます。</p>
+        <a href="https://n-tomita-ux.github.io/eito-recruit/" class="form-url" style="margin-top:20px;display:inline-block;">採用ページで見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header fade-up">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">よくある質問</h2>
+      <p class="section-desc">気になること、なんでも聞いてください。</p>
+    </div>
+    <div class="faq-list fade-up" id="faq-content">
+      <!-- 内容はeito-recruitから転記予定 -->
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">未経験でも応募できますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">はい、大歓迎です。年齢・学歴・経験は不問です。入社後はAIトミーや先輩社員のサポートで着実にスキルアップできる環境を用意しています。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">女性でも働けますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">もちろんです。施工管理の分野でも女性社員が活躍できる環境を整えています。ライフステージの変化にも柔軟に対応します。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">まずは話だけ聞くことはできますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">もちろんです。ご飯やお茶だけでもOKです。選考・評価なしで気軽に話しましょう。「転職するかわからない」くらいの気持ちで全然大丈夫です。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">残業はどのくらいありますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">平均月2時間です（早上がり除く実績値）。直行直帰やスマホでの業務報告により、無駄な移動や残業を徹底的に削減しています。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">資格がなくても大丈夫ですか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">大丈夫です。入社後に会社が資格取得をサポートします。スマホで学べる2級管工事模試アプリも完備しています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="form-section" id="form">
+  <div class="form-inner">
+    <div class="form-header fade-up">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-desc">ご質問・見学希望・カジュアル面談のご希望など、お気軽にどうぞ。</p>
+    </div>
+    <div class="form-embed fade-up">
+      <!-- GoogleフォームのURLをここに設定してください -->
+      <div class="form-placeholder">
+        <p>Googleフォームをここに埋め込み予定です。<br>フォームのURLが決まったら設定します。</p>
+        <a href="https://n-tomita-ux.github.io/eito-recruit/" class="form-url">採用ページから問い合わせる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- COMPANY -->
 <section class="company-section" id="company">
   <div class="company-inner">
@@ -570,6 +762,9 @@
         <li><a href="#philosophy">企業理念</a></li>
         <li><a href="#dx">DX推進</a></li>
         <li><a href="#company">会社情報</a></li>
+        <li><a href="#tommy">AIトミー</a></li>
+        <li><a href="#schedule">1日のスケジュール</a></li>
+        <li><a href="#faq">よくある質問</a></li>
         <li><a href="#recruit">採用情報</a></li>
       </ul>
     </div>
@@ -606,6 +801,17 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  // FAQ アコーディオン
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+      if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+    });
+  });
+
 </script>
 </body>
 </html>
